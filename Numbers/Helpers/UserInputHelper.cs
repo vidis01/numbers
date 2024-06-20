@@ -31,9 +31,9 @@ namespace Numbers.Helpers
             return false;
         }
 
-        public static string GetUserNumberFormatSelection()
+        public static string GetUserNumberFormatSelection(bool input)
         {
-            Console.WriteLine("Pasirinkite iš sąrašo, kokiu formatu įvesite skaičių: ");
+            Console.WriteLine($"Pasirinkite iš sąrašo, kokiu formatu {(input ? "įvesite" : "atspausdinti") } skaičių: ");
             Console.WriteLine("10 - Desimtainis");
             Console.WriteLine(" 2 - Dvejetainis");
             Console.WriteLine(" 8 - Astuntainis");
@@ -44,5 +44,6 @@ namespace Numbers.Helpers
 
             return inputNumberFormatSelection ?? "";
         }
+
     }
 }
