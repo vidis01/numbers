@@ -45,5 +45,23 @@ namespace Numbers.Helpers
             return inputNumberFormatSelection ?? "";
         }
 
+        public static bool UserSelectedNumberFormatInput(out int? numberBase)
+        {
+            numberBase = null;
+
+            Console.WriteLine("Įveskite skaičiaus pagrindą iš intervalo 17..99:");
+
+            var userInput = Console.ReadLine();
+
+            var isInputNumber = int.TryParse(userInput, out var number);
+
+            if (!isInputNumber) return false;
+
+            if (number < 17 || number > 99) return false;
+
+            numberBase = number;
+
+            return true;
+        }
     }
 }
