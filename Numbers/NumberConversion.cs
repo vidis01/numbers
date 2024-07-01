@@ -40,7 +40,24 @@ namespace Numbers
             return intNumber;
         }
 
-        public static int ConvertIntNumberToSelectedNumberBase(int numberToConvert, int numberBase)
+        public static string ConvertIntNumberToHex(int numberToConvert)
+        {
+            var reminders = GetRemaindersOfDecimalNumberDivisions(numberToConvert, 16);
+
+            var hexNumber = "";
+
+            for (int i = reminders.Count - 1; i >= 0; i++)
+            {
+                if (Enum.TryParse($"{reminders[i]}", out HexAlphabetEnum value))
+                {
+                    hexNumber += value;
+                }
+            }
+
+            return hexNumber;
+        }
+
+        public static int ConvertSelectedNumberBaseToInt(int numberToConvert, int numberBase)
         {
             int intNumber = 0;
 
