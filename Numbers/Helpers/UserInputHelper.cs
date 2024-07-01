@@ -58,5 +58,32 @@ namespace Numbers.Helpers
 
             return true;
         }
+
+        public static void PrintNumber(int number)
+        {
+            Console.WriteLine();
+            Console.WriteLine("---------- Skaičius DEŠIMTAINIU formatu ----------");
+            Console.WriteLine($"          {number}");
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine();
+        }
+
+        public static void PrintNumber(string hexNumber)
+        {
+            Console.WriteLine();
+            Console.WriteLine("---------- Skaičius ŠEŠIOLIKTAINIU formatu ----------");
+            Console.WriteLine($"          {hexNumber}");
+            Console.WriteLine("-----------------------------------------------------");
+            Console.WriteLine();
+        }
+
+        public static void PrintNumber(string number, int numberBase)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"---------- Skaičius, kurio pagrindas {numberBase} ----------");
+            Console.WriteLine($"         {number}");
+            Console.WriteLine("---------------------------------------------------");
+            Console.WriteLine();
+        }
     }
 }

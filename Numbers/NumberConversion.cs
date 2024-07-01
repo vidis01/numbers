@@ -70,5 +70,17 @@ namespace Numbers
 
             return intNumber;
         }
+
+        public static string GetRemaindersAsString(List<int> remainders, bool isBinary)
+        {
+            var numberAsString = "";
+
+            for (int i = remainders.Count - 1; i >= 0; i++)
+            {
+                numberAsString += $"{remainders[i]}{(!isBinary ? ' ' : "")}";
+            }
+
+            return numberAsString;
+        }
     }
 }
