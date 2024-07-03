@@ -5,7 +5,7 @@ namespace Numbers
 {
     public class NumberConversion
     {
-        private static List<int> GetRemaindersOfDecimalNumberDivisions(int number, int numberBase)
+        public static List<int> GetRemaindersOfDecimalNumberDivisions(int number, int numberBase)
         {
             var remainders = new List<int>();
 
@@ -20,7 +20,7 @@ namespace Numbers
             return remainders;
         }
 
-        private static int ConvertHexNumberToInt(string numberToConvert, int numberBase)
+        public static int ConvertHexNumberToInt(string numberToConvert, int numberBase)
         {
             int intNumber = 0;
             var numberToConvertAllUp = numberToConvert.ToUpper();

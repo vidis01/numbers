@@ -1,4 +1,5 @@
 ﻿using Numbers.Enums;
+using System.Diagnostics;
 
 namespace Numbers.Helpers
 {
@@ -40,6 +41,36 @@ namespace Numbers.Helpers
             return inputNumberFormatSelection ?? "";
         }
 
+        public static bool GetUserInputIfHeWantToContinue()
+        {
+            bool isInputCorrect = false;
+            bool doContinue = false;
+
+            do
+            {
+                Console.WriteLine("Ar norėsite įvesti kitą skaičių ( y / n )?");
+
+                var input = Console.ReadKey();
+
+                switch (input.KeyChar.ToString().ToUpper())
+                {
+                    case "Y":
+                        doContinue = true;
+                        isInputCorrect = true;
+                        break;
+                    case "N":
+                        return false;
+                    default:
+                        Console.WriteLine("Bloga įvestis.");
+                        Console.WriteLine();
+                        break;
+                }
+            }
+            while (!isInputCorrect);            
+
+            return doContinue;
+        }
+
         public static bool UserSelectedNumberFormatInput(out int? numberBase)
         {
             numberBase = null;
@@ -57,6 +88,101 @@ namespace Numbers.Helpers
             numberBase = number;
 
             return true;
+        }
+
+        public static bool GetNumberToConvert(NumberFormatEnum? numberFormatEnum, out string? numberToConvert)
+        {
+            bool isNumberEnteredCorrectly = true;
+            numberToConvert = null;
+            string? userInput = "";
+
+            switch (numberFormatEnum)
+            {
+                case NumberFormatEnum.Desimtainis:
+                    Console.WriteLine("Įveskite DEŠIMTAINĮ skaičių:");
+
+                    userInput= Console.ReadLine();
+
+                    if (!int.TryParse(userInput, out _))
+                        isNumberEnteredCorrectly = false;
+                    else
+                        numberToConvert = userInput;
+
+                    break;
+                case NumberFormatEnum.Dvejetainis:
+                    Console.WriteLine("Įveskite DVEJETINĮ skaičių:");
+
+                    userInput = Console.ReadLine();
+
+                    if (userInput != null)
+                    {
+                        foreach (var item in userInput)
+                        {
+                            if (!(item == '0' ^ item == '1'))
+                            {
+                                return false;
+                            }
+                        }
+                        numberToConvert = userInput;
+                    }
+                    else
+                    {
+                        isNumberEnteredCorrectly = false;
+                    }
+                    break;
+                case NumberFormatEnum.Astuntainis:
+                    Console.WriteLine("Įveskite AŠTUNTAINĮ skaičių:");
+
+                    userInput = Console.ReadLine();
+
+                    if (userInput != null && userInput != "")
+                    {
+                        foreach (var item in userInput)
+                        {
+                            if (item < 48 || item > 55)
+                            {
+                                return false;
+                            }
+                        }
+                        numberToConvert = userInput;
+                    }
+                    else
+                    {
+                        isNumberEnteredCorrectly = false;
+                    }
+                    break;
+                case NumberFormatEnum.Sesioliktainis:
+                    Console.WriteLine("Įveskite ŠEŠIOLIKTAINĮ skaičių:");
+
+                    userInput = Console.ReadLine();
+
+                    if (userInput != null && userInput != "")
+                    {
+                        foreach (var item in userInput.ToUpper())
+                        {
+                            if ((item < 48 || item > 57) && (item < 65 || item > 70))
+                            {
+                                return false;
+                            }
+                        }
+                        numberToConvert = userInput;
+                    }
+                    else
+                    {
+                        isNumberEnteredCorrectly = false;
+                    }
+                    break;
+                case NumberFormatEnum.Kitas: //padarysiu veliau
+                    isNumberEnteredCorrectly = false;
+                    numberToConvert = null;
+                    break;
+                default:
+                    isNumberEnteredCorrectly = false;
+                    numberToConvert = null;
+                    break;
+            }
+
+            return isNumberEnteredCorrectly;
         }
 
         public static void PrintNumber(int number)
